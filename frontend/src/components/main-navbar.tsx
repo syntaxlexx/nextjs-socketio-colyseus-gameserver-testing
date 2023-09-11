@@ -3,10 +3,14 @@
 import { FC } from "react";
 import { Button } from "./ui/button";
 import { Navbar } from "flowbite-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {}
 
 const MainNavbar: FC<Props> = ({}) => {
+  const router = useRouter();
+
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="/">
@@ -20,10 +24,10 @@ const MainNavbar: FC<Props> = ({}) => {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link active href="#">
+        <Navbar.Link active onClick={() => router.push("/")}>
           <p>Home</p>
         </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
+        <Navbar.Link onClick={() => router.push("/chat")}>Chat</Navbar.Link>
         <Navbar.Link href="#">Services</Navbar.Link>
         <Navbar.Link href="#">Pricing</Navbar.Link>
         <Navbar.Link href="#">Contact</Navbar.Link>
