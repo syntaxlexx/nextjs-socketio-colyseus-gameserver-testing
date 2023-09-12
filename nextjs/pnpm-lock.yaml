@@ -29,6 +29,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  colyseus.js:
+    specifier: ^0.15.13
+    version: 0.15.13
   eslint:
     specifier: 8.49.0
     version: 8.49.0
@@ -94,6 +97,11 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+    dev: false
+
+  /@colyseus/schema@2.0.15:
+    resolution: {integrity: sha512-5nsnxy9VuKa+Z8e96hEgizuJuzK1sgzpdRXyIIjgbBM7hc0of/YJhIOv1Es3GwN35IzQZ9XUtLrtEfFv0LIYtg==}
+    hasBin: true
     dev: false
 
   /@eslint-community/eslint-utils@4.4.0(eslint@8.49.0):
@@ -784,6 +792,19 @@ packages:
 
   /color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+    dev: false
+
+  /colyseus.js@0.15.13:
+    resolution: {integrity: sha512-MG6S3Zt0SZtALRKoeF/wfvkobMvHrNldJsbtrz+QQ4GSGzE+IdAx/RxkzzT5+GIqAq2W1dYyAjex/OS49bTV8g==}
+    engines: {node: '>= 12.x'}
+    dependencies:
+      '@colyseus/schema': 2.0.15
+      httpie: 2.0.0-next.13
+      tslib: 2.6.2
+      ws: 8.14.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
     dev: false
 
   /commander@4.1.1:
@@ -1581,6 +1602,11 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+    dev: false
+
+  /httpie@2.0.0-next.13:
+    resolution: {integrity: sha512-KbKOnq8wt0hVEfteYCSnEsPgzaWxcVc4qZ4OaDU9mVOYLRo3XChjWs3MiuRgFu5y+4JDo7sDKdKzkAn1ljQYFA==}
+    engines: {node: '>=10'}
     dev: false
 
   /ignore@5.2.4:
@@ -2855,6 +2881,19 @@ packages:
     peerDependencies:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
+
+  /ws@8.14.1:
+    resolution: {integrity: sha512-4OOseMUq8AzRBI/7SLMUwO+FEDnguetSk7KMb1sHwvF2w2Wv5Hoj0nlifx8vtGsftE/jWHojPy8sMMzYLJ2G/A==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
     peerDependenciesMeta:
       bufferutil:
         optional: true

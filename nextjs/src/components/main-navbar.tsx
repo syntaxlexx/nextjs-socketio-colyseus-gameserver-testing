@@ -27,10 +27,15 @@ const MainNavbar: FC<Props> = ({}) => {
         <Navbar.Link active onClick={() => router.push("/")}>
           <p>Home</p>
         </Navbar.Link>
-        <Navbar.Link onClick={() => router.push("/chat")}>Chat</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
+        <Navbar.Link onClick={() => router.push("/chat")}>
+          Chat (Socket.io)
+        </Navbar.Link>
+        <Navbar.Link onClick={() => router.push("/colyseus")}>
+          Colyseus
+        </Navbar.Link>
+        <Navbar.Link onClick={() => router.push("/colyseus-chat")}>
+          Chat (Colyseus)
+        </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   );

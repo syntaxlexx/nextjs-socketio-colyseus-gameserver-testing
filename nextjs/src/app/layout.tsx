@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import SocketioProvider from "@/components/providers/socketio-provider";
+import ColyseusProvider from "@/components/providers/colyseus-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SocketioProvider>
-          <MainNavbar />
-          <main className="pt-4">{children}</main>
+          <ColyseusProvider>
+            <MainNavbar />
+            <main className="pt-4">{children}</main>
+          </ColyseusProvider>
         </SocketioProvider>
       </body>
     </html>

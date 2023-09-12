@@ -1,14 +1,14 @@
 "use client";
 
-import { SocketioContext } from "@/context/socket";
-import { FC, useContext, useEffect, useState } from "react";
+import { useSocketio } from "@/hooks/use-socketio";
+import { FC, useEffect, useState } from "react";
 
 interface Props {}
 
 const ChatBox: FC<Props> = ({}) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<string[]>([]);
-  const socket = useContext(SocketioContext);
+  const socket = useSocketio();
 
   const handleInitialMessages = (initialMessages: string[]) => {
     console.log("Received initialMessages:", initialMessages);
