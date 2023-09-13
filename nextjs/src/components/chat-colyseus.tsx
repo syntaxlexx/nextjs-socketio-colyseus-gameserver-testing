@@ -13,54 +13,60 @@ const ChatColyseus: FC<Props> = ({}) => {
   const [welcomeMessage, setWelcomeMessage] = useState("");
   const [messages, setMessages] = useState<string[]>([]);
   const [roomName, setRoomName] = useState<string | null>(null);
-  const [room, setRoom] = useState<Room | null>(null);
+  const [theRoom, setTheRoom] = useState<Room | null>(null);
+
+  const onJoin = async () => {
+    const room = await client?.joinOrCreate<PublicRoomState>("public", {});
+
+    if (!room) {
+      console.log("Could not join the room!");
+      return;
+    }
+
+    console.log(room.sessionId, "joined", room.name);
+    setRoomName(room?.name);
+    setTheRoom(room);
+
+    room.onStateChange((state) => {
+      console.log(room.name, "has new state:", state);
+      setWelcomeMessage(state.welcomeMessage);
+      setMessages(state.messages);
+    });
+
+    room.onMessage("messages", (messages) => {
+      console.log("messages received on", room.name, messages);
+      //   setMessages(messages);
+    });
+
+    room.onMessage("message", (message) => {
+      console.log("received on", room.name, message);
+      setMessages((prev) => [...prev, message]);
+    });
+
+    room.onError((code, message) => {
+      console.log("couldn't join", room.name, "code: ", code);
+    });
+
+    room.onLeave((code) => {
+      console.log("left", room.name, "code: ", code);
+    });
+
+    return room;
+  };
 
   useEffect(() => {
-    client
-      ?.joinOrCreate<PublicRoomState>("public")
-      .then((room) => {
-        console.log(room.sessionId, "joined", room.name);
-        setRoomName(room.name);
-        setRoom(room);
-
-        room.onStateChange((state) => {
-          console.log(room.name, "has new state:", state);
-          setWelcomeMessage(state.welcomeMessage);
-          setMessages(state.messages);
-        });
-
-        room.onMessage("messages", (messages) => {
-          console.log(client.id, "messages received on", room.name, messages);
-          //   setMessages(messages);
-        });
-
-        room.onMessage("message", (message) => {
-          console.log(client.id, "received on", room.name, message);
-          setMessages((prev) => [...prev, message]);
-        });
-
-        room.onError((code, message) => {
-          console.log(client.id, "couldn't join", room.name, "code: ", code);
-        });
-
-        room.onLeave((code) => {
-          console.log(client.id, "left", room.name, "code: ", code);
-        });
-      })
-      .catch((e) => {
-        console.log("JOIN ERROR", e);
-      });
+    const conn = onJoin();
 
     return () => {
       console.log("cleanup");
-      room?.leave();
+      conn.then((room) => room?.leave());
     };
   }, [client]);
 
   const handleMessageSubmit = (e) => {
     e.preventDefault();
-    if (message.trim() && room) {
-      room.send("message", message);
+    if (message.trim() && theRoom) {
+      theRoom.send("message", message);
       setMessage("");
     }
   };

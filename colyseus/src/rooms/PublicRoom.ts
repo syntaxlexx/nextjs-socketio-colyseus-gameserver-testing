@@ -2,7 +2,7 @@ import { Room, Client } from "@colyseus/core";
 import { PublicRoomState } from "./schema/PublicRoomState";
 
 export class PublicRoom extends Room<PublicRoomState> {
-    maxClients = 2;
+    maxClients = 3;
 
     onCreate(options: any) {
         this.setState(new PublicRoomState());
