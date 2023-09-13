@@ -13,7 +13,7 @@ Testing out these ideas
 - Room mgmt between Nextjs and Colyseus
 
 ## Pointers
-To avoid duplicate events, always `socket.off()` on the `useEffect()` return section. That prevents memory leaks.
+To avoid duplicate events, always `socket.off()` on the `useEffect()` cleanup section (return). That prevents memory leaks.
 
 ## Setup
 Open 3 terminals, run `npm run dev` on all of them.
