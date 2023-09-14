@@ -7,6 +7,8 @@ import config from "@colyseus/tools";
  */
 import { MyRoom } from "./rooms/MyRoom";
 import { PublicRoom } from "./rooms/PublicRoom";
+import { PrivateRoom } from "./rooms/PrivateRoom";
+import { TwoPlayerRoom } from "./rooms/TwoPlayerRoom";
 
 export default config({
 
@@ -16,6 +18,8 @@ export default config({
          */
         gameServer.define('my_room', MyRoom);
         gameServer.define('public', PublicRoom);
+        gameServer.define('private', PrivateRoom);
+        gameServer.define('two_player', TwoPlayerRoom);
 
     },
 
