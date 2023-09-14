@@ -37,7 +37,6 @@ export class PrivateRoom extends Room<PrivateRoomState> {
         } catch (error) {
             throw new ServerError(400, "bad access token");
         }
-
     }
 
     onJoin(client: Client, options: any, auth?: any) {
@@ -48,6 +47,7 @@ export class PrivateRoom extends Room<PrivateRoomState> {
             id,
             username,
             sessionId: client.sessionId,
+            connected: true,
         }));
 
         // send them fresh copy of messages

@@ -49,6 +49,7 @@ export class TwoPlayerRoom extends Room<TwoPlayerRoomState> {
                 id,
                 username,
                 sessionId: client.sessionId,
+                connected: true,
             })
         } else {
             // is either player1 or 2 now
@@ -61,6 +62,7 @@ export class TwoPlayerRoom extends Room<TwoPlayerRoomState> {
                     id,
                     username,
                     sessionId: client.sessionId,
+                    connected: true,
                 })
             }
         }
