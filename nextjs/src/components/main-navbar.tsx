@@ -6,12 +6,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Button } from "./ui/button";
+import { useLogout } from "@/hooks/use-logout";
 
 interface Props {}
 
 const MainNavbar: FC<Props> = ({}) => {
   const router = useRouter();
   const user = useCurrentUser();
+  const logout = useLogout();
 
   return (
     <Navbar fluid rounded>
@@ -25,7 +27,7 @@ const MainNavbar: FC<Props> = ({}) => {
         {user.username ? (
           <div className="flex gap-2 items-center">
             <div>{user.username}</div>
-            <Button>Logout</Button>
+            <Button onClick={logout.logout}>Logout</Button>
           </div>
         ) : (
           <Link href="/login">

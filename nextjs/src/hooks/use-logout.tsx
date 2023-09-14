@@ -1,9 +1,14 @@
-import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export const useLogout = () => {
-  const logout = () => {
-    Cookies.remove("accessToken");
-    Cookies.remove("username");
+  const router = useRouter();
+
+  const logout = async () => {
+    const resp = await fetch("/api/logout");
+    if (resp.ok) {
+      router.replace("/");
+      router.refresh();
+    }
   };
 
   return {
