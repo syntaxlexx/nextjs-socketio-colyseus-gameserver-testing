@@ -20,3 +20,7 @@ Testing out these ideas
 ## Setup
 - Run `pnpm i` on all 3 projects (i.e.`colyseus`,`nextjs`,`socketio`)
 - Open 3 terminals, run `npm run dev` on all of them.
+
+## License
+- MIT
+- DBAD -> Don't Be A D*ck!
