@@ -1,15 +1,17 @@
 "use client";
 
-import { FC } from "react";
-import { Button } from "./ui/button";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { Navbar } from "flowbite-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { FC } from "react";
+import { Button } from "./ui/button";
 
 interface Props {}
 
 const MainNavbar: FC<Props> = ({}) => {
   const router = useRouter();
+  const user = useCurrentUser();
 
   return (
     <Navbar fluid rounded>
@@ -19,8 +21,17 @@ const MainNavbar: FC<Props> = ({}) => {
           NextJs + Colyseus
         </span>
       </Navbar.Brand>
-      <div className="flex md:order-2">
-        <Button>Get started</Button>
+      <div className="flex items-center md:order-2">
+        {user.username ? (
+          <div className="flex gap-2 items-center">
+            <div>{user.username}</div>
+            <Button>Logout</Button>
+          </div>
+        ) : (
+          <Link href="/login">
+            <Button>Login</Button>
+          </Link>
+        )}
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
@@ -33,8 +44,8 @@ const MainNavbar: FC<Props> = ({}) => {
         <Navbar.Link onClick={() => router.push("/colyseus")}>
           Colyseus
         </Navbar.Link>
-        <Navbar.Link onClick={() => router.push("/colyseus-chat")}>
-          Chat (Colyseus)
+        <Navbar.Link onClick={() => router.push("/private/colyseus")}>
+          Colyseus (Auth)
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
