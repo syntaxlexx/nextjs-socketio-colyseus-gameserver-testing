@@ -1,4 +1,4 @@
-# Next13 + WebSockets
+# Next13 + WebSockets + TypeScript
 A sample implementation of how to handle Websockets with Nextjs 13 `app dir`, `socket.io` and `colyseus`.
 
 #### This is a playground to quickly figure out Nextjs stuff
@@ -13,6 +13,7 @@ Testing out these ideas
 - [x] Room mgmt between Nextjs and Colyseus
 
 ## Pointers
+- Make use of React's `ContextApi`
 - To avoid duplicate events on `socket.io`, always `socket.off()` on the `useEffect()` cleanup section (return). That prevents memory leaks.
 - To avoid duplicate events/memory leakage on `colyseus`, refactor the `onJoin` so it can be run on the `cleanup` part in `useEffect`
 
