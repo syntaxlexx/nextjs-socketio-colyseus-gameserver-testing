@@ -46,8 +46,11 @@ const MainNavbar: FC<Props> = ({}) => {
         <Navbar.Link onClick={() => router.push("/colyseus")}>
           Colyseus
         </Navbar.Link>
-        <Navbar.Link onClick={() => router.push("/private/colyseus")}>
-          Colyseus (Auth)
+        <Navbar.Link onClick={() => router.push("/private/two-player")}>
+          Two-Player
+        </Navbar.Link>
+        <Navbar.Link onClick={() => router.push("/private/private-chat")}>
+          Private Chat
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

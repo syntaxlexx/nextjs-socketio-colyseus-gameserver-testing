@@ -22,12 +22,12 @@ export async function middleware(req: NextRequest) {
 
         const response = NextResponse.next();
 
-        const { sub, username } = await verifyJWT<{ sub: string, username: string }>(token);
+        const { id, username } = await verifyJWT<{ id: string, username: string }>(token);
 
-        response.headers.set("X-USER-ID", sub);
+        response.headers.set("X-USER-ID", id);
         response.headers.set("X-USER-USERNAME", username);
 
-        (req as AuthenticatedRequest).user = { id: sub, username };
+        (req as AuthenticatedRequest).user = { id, username };
 
     } catch (err) {
         console.log("err", err);

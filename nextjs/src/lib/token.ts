@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 
 export const signJWT = async (
-    payload: { sub: string, username: String },
+    payload: { id: string, username: String },
     options: { exp: string }
 ) => {
     try {
@@ -12,7 +12,7 @@ export const signJWT = async (
             .setProtectedHeader({ alg })
             .setExpirationTime(options.exp)
             .setIssuedAt()
-            .setSubject(payload.sub)
+            .setSubject(payload.id)
             .sign(secret);
     } catch (error) {
         throw error;

@@ -6,7 +6,7 @@ export async function GET(req: Request) {
     const token = getCookie('token', { req })
 
     try {
-        const { sub, username } = await verifyJWT<{ sub: string, username: string }>(token);
+        const { id, username } = await verifyJWT<{ id: string, username: string }>(token);
 
         // get user from DB if you have to
 
@@ -14,7 +14,7 @@ export async function GET(req: Request) {
             status: "OK",
             data: {
                 user: {
-                    id: sub,
+                    id,
                     username
                 }
             }

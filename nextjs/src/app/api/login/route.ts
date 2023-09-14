@@ -1,5 +1,6 @@
 import { signJWT } from '@/lib/token';
 import { NextResponse } from 'next/server';
+import { createId } from '@paralleldrive/cuid2';
 
 export async function POST(req: Request) {
     const body = await req.json()
@@ -9,16 +10,16 @@ export async function POST(req: Request) {
 
     try {
         const token = await signJWT(
-            { sub: "1", username, },
+            { id: createId(), username, },
             { exp: `${JWT_EXPIRES_IN}h` }
         );
 
         const tokenMaxAge = parseInt(JWT_EXPIRES_IN) * 60 * 60;
-        
+
         const cookieOptions = {
             name: "token",
             value: token,
-            httpOnly: true,
+            httpOnly: true, // can not be accessed by JavaScript
             path: "/",
             secure: process.env.NODE_ENV !== "development",
             maxAge: tokenMaxAge,
