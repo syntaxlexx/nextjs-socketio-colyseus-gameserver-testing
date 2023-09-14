@@ -23,7 +23,7 @@ export default function RootLayout({
         <SocketioProvider>
           <ColyseusProvider>
             <MainNavbar />
-            <main className="pt-4">{children}</main>
+            <main className="container pt-4">{children}</main>
           </ColyseusProvider>
         </SocketioProvider>
       </body>

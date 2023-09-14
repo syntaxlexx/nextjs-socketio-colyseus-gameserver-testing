@@ -13,7 +13,7 @@ const MessagesList: FC<Props> = ({}) => {
   useEffect(() => {
     const generateMessages = () => {
       const list: Message[] = [];
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 10; i++) {
         list.push({
           id: chance().guid(),
           userId: chance().guid(),

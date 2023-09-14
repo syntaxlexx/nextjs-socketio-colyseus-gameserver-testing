@@ -4,6 +4,8 @@ import { useColyseus } from "@/hooks/use-colyseus";
 import type { PublicRoomState } from "@colyseus/rooms/schema/PublicRoomState";
 import { Room } from "colyseus.js";
 import { FC, useEffect, useState } from "react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 interface Props {}
 
@@ -80,13 +82,15 @@ const ChatColyseus: FC<Props> = ({}) => {
           <div key={index}>{msg}</div>
         ))}
       </div>
-      <form onSubmit={handleMessageSubmit}>
-        <input
+      <form onSubmit={handleMessageSubmit} className="space-y-2">
+        <Input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit">Send</button>
+        <div className="flex justify-end">
+          <Button type="submit">Send</Button>
+        </div>
       </form>
     </div>
   );
